@@ -1,5 +1,5 @@
 <template>
-    <div class="box has-text-weight-bold">
+    <div class="box has-text-weight-bold ">
         <slot></slot>
     </div>
 </template>
@@ -14,7 +14,6 @@ export default defineComponent({
 
 <style scoped>
 .box {
-    background: #9124;
+    background: rgb(243, 245, 157);
 }
-
 </style>
