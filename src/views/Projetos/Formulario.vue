@@ -22,11 +22,12 @@
   
   <script lang="ts">
   import { useStore } from "@/store";
-  import { ALTERA_PROJETO, ADICIONA_PROJETO } from "@/store/tipo-mutacoes";
+  import { ALTERA_PROJETO, ADICIONA_PROJETO, NOTIFICAR } from "@/store/tipo-mutacoes";
   import { defineComponent } from "vue";
+  import { TipoNotificacao } from '@/interfaces/INotificacao';
 
   export default defineComponent({
-    name: "ProjetosTarefas",
+    name: "FormularioTarefa",
     props: {
         id: {
             type: String
@@ -55,6 +56,11 @@
         }
           
           this.nomeDoProjeto = ''
+          this.store.commit(NOTIFICAR, {
+            titulo: 'Novo projeto foi salvo',
+            texto: 'Protinho ;) seu projeto já está disponivel.',
+            tipo: TipoNotificacao.SUCESSO
+          })
           this.$router.push('/projetos')
       },
     },
