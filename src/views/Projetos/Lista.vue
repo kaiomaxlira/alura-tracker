@@ -39,17 +39,19 @@
 
 <script lang="ts">
 import { useStore } from "@/store";
-import { EXCLUIR_PROJETO } from "@/store/tipo-mutacoes";
+import { OBTER_PROJETOS } from "@/store/tipo-acoes";
+import { EXCLUIR_PROJETOS } from "@/store/tipo-mutacoes";
 import { computed, defineComponent } from "vue";
 export default defineComponent({
   name: "ListaTarefa",
   methods: {
     excluir (id: string) {
-      this.store.commit(EXCLUIR_PROJETO, id)
+      this.store.commit(EXCLUIR_PROJETOS, id)
     }
   },
   setup () {
     const store = useStore();
+    store.dispatch(OBTER_PROJETOS)
     return {
       projetos: computed(() => store.state.projetos),
       store

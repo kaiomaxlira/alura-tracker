@@ -1,8 +1,10 @@
 import IProjeto from '@/interfaces/IProjeto';
 import { createStore, Store, useStore as vuexUseStore } from 'vuex';
 import { InjectionKey } from 'vue';
-import { ADICIONA_PROJETO, ALTERA_PROJETO, EXCLUIR_PROJETO, NOTIFICAR } from './tipo-mutacoes';
+import { ADICIONA_PROJETOS, ALTERA_PROJETOS, EXCLUIR_PROJETOS, DEFINIR_PROJETOS, NOTIFICAR } from './tipo-mutacoes';
 import { INotificacao } from '@/interfaces/INotificacao';
+import { OBTER_PROJETOS } from './tipo-acoes';
+import http from "@/http"
 
 interface Estado {
     projetos: IProjeto[]
@@ -18,19 +20,22 @@ export const store = createStore<Estado>({
         notificacoes: []
     },
     mutations: {
-        [ADICIONA_PROJETO] (state,nomeDoProjeto: string) {
+        [ADICIONA_PROJETOS] (state,nomeDoProjeto: string) {
             const projeto = {
                 id: new Date().toISOString(),
                 nome: nomeDoProjeto,
             } as IProjeto
             state.projetos.push(projeto)
         },
-        [ALTERA_PROJETO] (state, projeto: IProjeto) {
+        [ALTERA_PROJETOS] (state, projeto: IProjeto) {
             const index = state.projetos.findIndex(proj => proj.id == projeto.id)
             state.projetos[index] = projeto
         },
-        [EXCLUIR_PROJETO] (state, id: string) {
+        [EXCLUIR_PROJETOS] (state, id: string) { 
             state.projetos = state.projetos.filter(proj => proj.id != id)
+        },
+        [DEFINIR_PROJETOS] (state, projetos: IProjeto[]) { 
+            state.projetos = projetos
         },
         [NOTIFICAR] (state, novaNotificacao: INotificacao) {
 
@@ -40,6 +45,12 @@ export const store = createStore<Estado>({
             setTimeout(() => {
                 state.notificacoes = state.notificacoes.filter(notificacao => notificacao.id != novaNotificacao.id)
             }, 3000)
+        }
+    },
+    actions: {
+        [OBTER_PROJETOS] ({ commit }) {
+            http.get('projeto')
+            .then(resposta => commit(DEFINIR_PROJETOS, resposta.data))
         }
     }
 })
