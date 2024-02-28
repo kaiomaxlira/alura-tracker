@@ -7,21 +7,40 @@
     {
       "id": "dce8",
       "nome": "kaio maxpl"
-    },
-    {
-      "id": "b02a",
-      "nome": "kaio max"
     }
   ],
   "tarefas": [
     {
-      "id": 1,
+      "id": "1",
       "duracaoEmSegundos": 120,
-      "descricao": "Configuração do ambiente",
+      "descricao": "kaio max o",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker"
       }
+    },
+    {
+      "id": "4cc9",
+      "duracaoEmSegundos": 2,
+      "descricao": "kaio max",
+      "projeto": {
+        "id": "74c4",
+        "nome": "kaio max0"
+      }
+    },
+    {
+      "id": "9ce3",
+      "duracaoEmSegundos": 2,
+      "descricao": "",
+      "projeto": {
+        "id": "74c4",
+        "nome": "kaio max0"
+      }
+    },
+    {
+      "id": "acf7",
+      "duracaoEmSegundos": 2,
+      "descricao": ""
     }
   ]
 }
